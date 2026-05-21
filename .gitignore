@@ -1,0 +1,13 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Builds (IMPORTANT)
+build/
+*.exe
+*.x86_64
+*.pck
+
+# OS junk
+.DS_Store
+Thumbs.db
