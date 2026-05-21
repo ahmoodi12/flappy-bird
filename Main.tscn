@@ -1,0 +1,803 @@
+[gd_scene format=3 uid="uid://c6n6lm8c1ujhy"]
+
+[ext_resource type="Script" uid="uid://c88hpfkkefdbh" path="res://aligner_node2d.gd" id="1_w3rk5"]
+[ext_resource type="Script" uid="uid://dwrkvqhr8xu02" path="res://game_manager.gd" id="2_5mvff"]
+[ext_resource type="PackedScene" uid="uid://dacmukikywfps" path="res://pipe_pair.tscn" id="3_oye8v"]
+[ext_resource type="Script" uid="uid://bil2ggcxpl5ov" path="res://bg_parallax.gd" id="4_40n85"]
+[ext_resource type="Texture2D" uid="uid://j1b7v6ulldko" path="res://bg.png" id="5_gb15f"]
+[ext_resource type="Script" uid="uid://dnvk44siietpa" path="res://bg.gd" id="6_sph85"]
+[ext_resource type="Script" uid="uid://dwxy40jlicaf5" path="res://bird.gd" id="7_o7g6l"]
+[ext_resource type="Texture2D" uid="uid://b53bnyorm1fyp" path="res://flappy_bird.png" id="8_vi5kq"]
+[ext_resource type="AudioStream" uid="uid://dari3yhdqs34s" path="res://jump_sound.mp3" id="9_5mkgo"]
+[ext_resource type="Script" uid="uid://dijoj5bvif3n7" path="res://sound_effect.gd" id="10_3ccbu"]
+[ext_resource type="AudioStream" uid="uid://bn8nq34euv7wj" path="res://sfx_die.mp3" id="11_ny7u2"]
+[ext_resource type="AudioStream" uid="uid://6uadjhxnbt14" path="res://pop.mp3" id="12_x3yn0"]
+[ext_resource type="Script" uid="uid://oupcs50jssb5" path="res://floor.gd" id="13_1w2xm"]
+[ext_resource type="AudioStream" uid="uid://bqnx28emv4qy3" path="res://sfx_point.mp3" id="14_gngx1"]
+[ext_resource type="Script" uid="uid://cd8ulos70cepm" path="res://ui_manager.gd" id="15_jt61w"]
+[ext_resource type="FontFile" uid="uid://cfebsv8364tkx" path="res://Scribble Markers.otf" id="16_v8qla"]
+[ext_resource type="StyleBox" uid="uid://oi0wwiriwxwh" path="res://menu_buttons_pressed.tres" id="17_y1tbi"]
+[ext_resource type="StyleBox" uid="uid://duhxd440rx0wh" path="res://menu_buttons_hover.tres" id="18_c2s76"]
+[ext_resource type="Script" uid="uid://bp016oc1edfay" path="res://opt_btn.gd" id="19_f4ese"]
+[ext_resource type="Script" uid="uid://b8u5vqhpv1k6j" path="res://quit_btn.gd" id="20_rchyr"]
+[ext_resource type="Script" uid="uid://cq6tb3weu7pdo" path="res://pause_btn.gd" id="21_pljue"]
+[ext_resource type="Script" uid="uid://cxnhcj8jluw6" path="res://score.gd" id="22_nx4yo"]
+[ext_resource type="Script" uid="uid://dji3i6f2gtjk3" path="res://settingsManager.gd" id="23_5tfui"]
+[ext_resource type="Script" uid="uid://dm5ybf7r677vv" path="res://background_music.gd" id="24_38apo"]
+[ext_resource type="AudioStream" uid="uid://dxiefiw5h0avq" path="res://background music/retro1.mp3" id="25_khphd"]
+[ext_resource type="AudioStream" uid="uid://1mhrbgfibvq" path="res://background music/retro2.mp3" id="26_g4yo4"]
+[ext_resource type="AudioStream" uid="uid://bbwsasufakwkp" path="res://background music/retro3.mp3" id="27_im7ls"]
+[ext_resource type="AudioStream" uid="uid://ct4egujpwwdsn" path="res://background music/retro4.mp3" id="28_a34eg"]
+[ext_resource type="AudioStream" uid="uid://3w0ol7yiwce5" path="res://background music/retro5.mp3" id="29_via5u"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ycdy4"]
+points = PackedVector2Array(37, 25, 12, 25, 12, 29, -7, 29, -7, 25, -17, 25, -17, 20, -22, 20, -22, 15, -32, 15, -32, 10, -37, 10, -37, 5, -42, 5, -42, -10, -37, -10, -37, -15, -27, -15, -27, -20, -22, -20, -22, -24, -12, -24, -12, -29, 18, -29, 18, -24, 22, -24, 22, -20, 28, -20, 28, -15, 32, -15, 32, 0, 37, 0, 37, 5, 42, 5, 42, 10, 37, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dg77c"]
+size = Vector2(1152, 50)
+
+[sub_resource type="FontVariation" id="FontVariation_v2mkm"]
+base_font = ExtResource("16_v8qla")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7boi2"]
+bg_color = Color(0, 0.47058824, 0.99607843, 0.61960787)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0.30196184, 0.65884113, 0.8)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
+bg_color = Color(0.00043052956, 0.40057495, 0.54693764, 0.48235294)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0odxb"]
+bg_color = Color(0, 0, 0, 0.47058824)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="main" type="Node" unique_id=748787670]
+
+[node name="world" type="Node2D" parent="." unique_id=294831909]
+script = ExtResource("1_w3rk5")
+
+[node name="gameManager" type="Node" parent="world" unique_id=1220338492 node_paths=PackedStringArray("UI", "bird", "pipes", "score_label", "final_score_label", "point_sound", "start_menu", "death_menu", "pause_menu", "game_ui")]
+script = ExtResource("2_5mvff")
+UI = NodePath("../../UI/UIManager")
+bird = NodePath("../bird")
+pipes = NodePath("../pipes")
+pipe_pair_scene = ExtResource("3_oye8v")
+score_label = NodePath("../../UI/in game UI/score")
+final_score_label = NodePath("../../UI/death menu/BoxContainer/final score")
+point_sound = NodePath("../point_sound")
+start_menu = NodePath("../../UI/start menu")
+death_menu = NodePath("../../UI/death menu")
+pause_menu = NodePath("../../UI/pause menu")
+game_ui = NodePath("../../UI/in game UI")
+
+[node name="bg" type="Parallax2D" parent="world" unique_id=389442179 node_paths=PackedStringArray("gameManager")]
+script = ExtResource("4_40n85")
+gameManager = NodePath("../gameManager")
+
+[node name="Sprite2D" type="Sprite2D" parent="world/bg" unique_id=881626204]
+texture = ExtResource("5_gb15f")
+script = ExtResource("6_sph85")
+
+[node name="bird" type="CharacterBody2D" parent="world" unique_id=1744926172 node_paths=PackedStringArray("game_manager", "jump_sound", "death_sound", "pop_sound", "sprite")]
+scale = Vector2(1.8, 1.8)
+script = ExtResource("7_o7g6l")
+game_manager = NodePath("../gameManager")
+jump_sound = NodePath("jump_sound")
+death_sound = NodePath("death_sound")
+pop_sound = NodePath("Pop")
+sprite = NodePath("bird")
+
+[node name="bird" type="Sprite2D" parent="world/bird" unique_id=157308986]
+visible = false
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("8_vi5kq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world/bird" unique_id=1950604392]
+shape = SubResource("ConvexPolygonShape2D_ycdy4")
+debug_color = Color(0.9909118, 0, 0.26344135, 0.41960785)
+
+[node name="jump_sound" type="AudioStreamPlayer" parent="world/bird" unique_id=1431371502]
+stream = ExtResource("9_5mkgo")
+script = ExtResource("10_3ccbu")
+
+[node name="death_sound" type="AudioStreamPlayer" parent="world/bird" unique_id=983072389]
+stream = ExtResource("11_ny7u2")
+script = ExtResource("10_3ccbu")
+
+[node name="Pop" type="AudioStreamPlayer" parent="world/bird" unique_id=1147559761]
+stream = ExtResource("12_x3yn0")
+
+[node name="floor" type="StaticBody2D" parent="world" unique_id=1920842461 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("13_1w2xm")
+hitbox = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world/floor" unique_id=1713425245]
+position = Vector2(0, 293.5)
+shape = SubResource("RectangleShape2D_dg77c")
+
+[node name="pipes" type="Node2D" parent="world" unique_id=25841991]
+
+[node name="point_sound" type="AudioStreamPlayer" parent="world" unique_id=1157867914]
+stream = ExtResource("14_gngx1")
+script = ExtResource("10_3ccbu")
+
+[node name="UI" type="Control" parent="." unique_id=270018924]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIManager" type="Node" parent="UI" unique_id=1665458438 node_paths=PackedStringArray("start_menu", "death_menu", "pause_menu", "game_ui", "gameplay_settings", "audio_settings")]
+script = ExtResource("15_jt61w")
+start_menu = NodePath("../start menu")
+death_menu = NodePath("../death menu")
+pause_menu = NodePath("../pause menu")
+game_ui = NodePath("../in game UI")
+gameplay_settings = NodePath("../settings/game play")
+audio_settings = NodePath("../settings/audio")
+
+[node name="start menu" type="Control" parent="UI" unique_id=355573813]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="BoxContainer" type="BoxContainer" parent="UI/start menu" unique_id=2026679832]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.5
+offset_top = -160.0
+offset_right = 134.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+vertical = true
+
+[node name="Title" type="Label" parent="UI/start menu/BoxContainer" unique_id=1342863902]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 50
+text = "Flappy Bird"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menu buttons" type="BoxContainer" parent="UI/start menu/BoxContainer" unique_id=372455135]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+alignment = 1
+vertical = true
+
+[node name="start btn" type="Button" parent="UI/start menu/BoxContainer/menu buttons" unique_id=63286316]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "▶️ start"
+
+[node name="opt btn" type="Button" parent="UI/start menu/BoxContainer/menu buttons" unique_id=1149904908 node_paths=PackedStringArray("UI", "options_menu")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🔀 options"
+script = ExtResource("19_f4ese")
+UI = NodePath("../../../../UIManager")
+options_menu = NodePath("../../../../options menu")
+
+[node name="quit btn" type="Button" parent="UI/start menu/BoxContainer/menu buttons" unique_id=1983491008]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🔚 quit"
+script = ExtResource("20_rchyr")
+
+[node name="death menu" type="Control" parent="UI" unique_id=734168889]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="BoxContainer" type="BoxContainer" parent="UI/death menu" unique_id=1767860766]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -146.5
+offset_right = 106.5
+offset_bottom = 146.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+vertical = true
+
+[node name="Title" type="Label" parent="UI/death menu/BoxContainer" unique_id=1553554459]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 50
+text = "You Died!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="final score" type="Label" parent="UI/death menu/BoxContainer" unique_id=214602668]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 30
+
+[node name="menu buttons" type="BoxContainer" parent="UI/death menu/BoxContainer" unique_id=132911211]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+alignment = 1
+vertical = true
+
+[node name="go to menu btn" type="Button" parent="UI/death menu/BoxContainer/menu buttons" unique_id=1950612314]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "👉 go to menu"
+
+[node name="restart btn" type="Button" parent="UI/death menu/BoxContainer/menu buttons" unique_id=1494736983]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "⟳ restart"
+
+[node name="quit btn" type="Button" parent="UI/death menu/BoxContainer/menu buttons" unique_id=1736797634]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🔚 quit"
+script = ExtResource("20_rchyr")
+
+[node name="in game UI" type="Control" parent="UI" unique_id=752020059]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pause btn" type="Button" parent="UI/in game UI" unique_id=467023483]
+layout_mode = 1
+offset_right = 72.0
+offset_bottom = 63.0
+scale = Vector2(1.8, 1.8)
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxFlat_2cqfq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2cqfq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0odxb")
+text = "❚❚"
+script = ExtResource("21_pljue")
+
+[node name="score" type="Label" parent="UI/in game UI" unique_id=1334108979]
+layout_mode = 1
+offset_right = 188.0
+offset_bottom = 37.0
+scale = Vector2(1.8, 1.8)
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 36
+text = "score here:"
+script = ExtResource("22_nx4yo")
+
+[node name="pause menu" type="Control" parent="UI" unique_id=1046908577]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="BoxContainer" type="BoxContainer" parent="UI/pause menu" unique_id=1188283024]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.5
+offset_top = -160.0
+offset_right = 146.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 115
+vertical = true
+
+[node name="Title" type="Label" parent="UI/pause menu/BoxContainer" unique_id=1945878106]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 50
+text = "Game paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menu buttons" type="BoxContainer" parent="UI/pause menu/BoxContainer" unique_id=927710426]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+alignment = 1
+vertical = true
+
+[node name="continue btn" type="Button" parent="UI/pause menu/BoxContainer/menu buttons" unique_id=2107543967]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "▶️ continue"
+
+[node name="opt btn" type="Button" parent="UI/pause menu/BoxContainer/menu buttons" unique_id=2041162216 node_paths=PackedStringArray("UI", "options_menu")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🔀 options"
+script = ExtResource("19_f4ese")
+UI = NodePath("../../../../UIManager")
+options_menu = NodePath("../../../../options menu")
+
+[node name="restart btn" type="Button" parent="UI/pause menu/BoxContainer/menu buttons" unique_id=1736417842]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "⟳ restart"
+
+[node name="go to menu btn" type="Button" parent="UI/pause menu/BoxContainer/menu buttons" unique_id=1143409806]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "👉 go to menu"
+
+[node name="quit btn" type="Button" parent="UI/pause menu/BoxContainer/menu buttons" unique_id=1496955401]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🔚 quit"
+script = ExtResource("20_rchyr")
+
+[node name="options menu" type="Control" parent="UI" unique_id=1414146700]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="BoxContainer" type="BoxContainer" parent="UI/options menu" unique_id=403714010]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.5
+offset_top = -107.5
+offset_right = 134.5
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 115
+vertical = true
+
+[node name="Title" type="Label" parent="UI/options menu/BoxContainer" unique_id=335368041]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="settings buttons" type="BoxContainer" parent="UI/options menu/BoxContainer" unique_id=817921753]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+alignment = 1
+vertical = true
+
+[node name="gameplay settings btn" type="Button" parent="UI/options menu/BoxContainer/settings buttons" unique_id=180330059]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🎮 game play"
+
+[node name="audio settings" type="Button" parent="UI/options menu/BoxContainer/settings buttons" unique_id=586477411]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🔊 audio"
+
+[node name="go back btn" type="Button" parent="UI/options menu/BoxContainer/settings buttons" unique_id=882630649]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🔙 go back "
+
+[node name="settings" type="Control" parent="UI" unique_id=1693948694 node_paths=PackedStringArray("jump_sens_val", "gravity_val", "difficulty_val", "sound_effect_DB_val", "bg_music_DB_val", "bg_music_enabled", "imm_respawn", "game_speed_val")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("23_5tfui")
+jump_sens_val = NodePath("game play/BoxContainer/inputs/jump_sens_val")
+gravity_val = NodePath("game play/BoxContainer/inputs/gravity")
+difficulty_val = NodePath("game play/BoxContainer/inputs/difficulty")
+sound_effect_DB_val = NodePath("audio/BoxContainer/inputs/sound effect intensity")
+bg_music_DB_val = NodePath("audio/BoxContainer/inputs/bg music intensity")
+bg_music_enabled = NodePath("audio/BoxContainer/inputs/bg music")
+imm_respawn = NodePath("game play/BoxContainer/inputs/imm respawn")
+game_speed_val = NodePath("game play/BoxContainer/inputs/game speed")
+
+[node name="game play" type="Control" parent="UI/settings" unique_id=108897245]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="BoxContainer" type="BoxContainer" parent="UI/settings/game play" unique_id=1497517905]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.5
+offset_top = -107.5
+offset_right = 134.5
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 115
+vertical = true
+
+[node name="Title" type="Label" parent="UI/settings/game play/BoxContainer" unique_id=244814987]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 50
+text = "Game play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="inputs" type="BoxContainer" parent="UI/settings/game play/BoxContainer" unique_id=574159349]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+alignment = 1
+vertical = true
+
+[node name="imm respawn" type="CheckBox" parent="UI/settings/game play/BoxContainer/inputs" unique_id=2091266678]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+text = "immediate respawn"
+icon_alignment = 2
+expand_icon = true
+
+[node name="label" type="Label" parent="UI/settings/game play/BoxContainer/inputs" unique_id=621579248]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 24
+text = "jump sensitivity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="jump_sens_val" type="HSlider" parent="UI/settings/game play/BoxContainer/inputs" unique_id=571870672]
+layout_mode = 2
+min_value = 10.0
+max_value = 5000.0
+value = 400.0
+
+[node name="label2" type="Label" parent="UI/settings/game play/BoxContainer/inputs" unique_id=687762014]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 24
+text = "gravity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gravity" type="HSlider" parent="UI/settings/game play/BoxContainer/inputs" unique_id=1394635391]
+layout_mode = 2
+min_value = 10.0
+max_value = 5000.0
+value = 800.0
+
+[node name="label3" type="Label" parent="UI/settings/game play/BoxContainer/inputs" unique_id=1007865036]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 24
+text = "difficulty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="difficulty" type="HSlider" parent="UI/settings/game play/BoxContainer/inputs" unique_id=1519555159]
+layout_mode = 2
+min_value = 10.0
+max_value = 5000.0
+value = 400.0
+
+[node name="label4" type="Label" parent="UI/settings/game play/BoxContainer/inputs" unique_id=1256986303]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 24
+text = "game speed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game speed" type="HSlider" parent="UI/settings/game play/BoxContainer/inputs" unique_id=1895972628]
+layout_mode = 2
+min_value = 10.0
+max_value = 5000.0
+value = 400.0
+
+[node name="go back btn" type="Button" parent="UI/settings/game play/BoxContainer/inputs" unique_id=1483849700]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🔙 go back"
+
+[node name="audio" type="Control" parent="UI/settings" unique_id=1395093833]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="BoxContainer" type="BoxContainer" parent="UI/settings/audio" unique_id=924463606]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.5
+offset_top = -107.5
+offset_right = 134.5
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+vertical = true
+
+[node name="Title" type="Label" parent="UI/settings/audio/BoxContainer" unique_id=806332189]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 50
+text = "audio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="inputs" type="BoxContainer" parent="UI/settings/audio/BoxContainer" unique_id=605123437]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 14
+alignment = 1
+vertical = true
+
+[node name="label" type="Label" parent="UI/settings/audio/BoxContainer/inputs" unique_id=1663658571]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 24
+text = "sound effect loudness"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sound effect intensity" type="HSlider" parent="UI/settings/audio/BoxContainer/inputs" unique_id=1460654606]
+layout_mode = 2
+min_value = -80.0
+max_value = 24.0
+step = 0.1
+value = 24.0
+
+[node name="bg music" type="CheckBox" parent="UI/settings/audio/BoxContainer/inputs" unique_id=600487241]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+text = "background music
+"
+icon_alignment = 2
+expand_icon = true
+
+[node name="label2" type="Label" parent="UI/settings/audio/BoxContainer/inputs" unique_id=585438866]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_v2mkm")
+theme_override_font_sizes/font_size = 24
+text = "bg music loudness"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bg music intensity" type="HSlider" parent="UI/settings/audio/BoxContainer/inputs" unique_id=730308312]
+layout_mode = 2
+min_value = -80.0
+max_value = 24.0
+step = 0.1
+value = 24.0
+
+[node name="go back btn" type="Button" parent="UI/settings/audio/BoxContainer/inputs" unique_id=1857514947]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_v8qla")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("17_y1tbi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7boi2")
+theme_override_styles/hover = ExtResource("18_c2s76")
+text = "🔙 go back"
+
+[node name="background music" type="AudioStreamPlayer" parent="." unique_id=1600222454]
+script = ExtResource("24_38apo")
+
+[node name="1" type="AudioStreamPlayer" parent="background music" unique_id=809496692]
+stream = ExtResource("25_khphd")
+
+[node name="2" type="AudioStreamPlayer" parent="background music" unique_id=18061478]
+stream = ExtResource("26_g4yo4")
+
+[node name="3" type="AudioStreamPlayer" parent="background music" unique_id=941553311]
+stream = ExtResource("27_im7ls")
+
+[node name="4" type="AudioStreamPlayer" parent="background music" unique_id=520569020]
+stream = ExtResource("28_a34eg")
+
+[node name="5" type="AudioStreamPlayer" parent="background music" unique_id=457463521]
+stream = ExtResource("29_via5u")
+
+[connection signal="pressed" from="UI/start menu/BoxContainer/menu buttons/start btn" to="world/gameManager" method="_on_start_btn_pressed"]
+[connection signal="pressed" from="UI/start menu/BoxContainer/menu buttons/start btn" to="UI/start menu/BoxContainer/menu buttons/start btn" method="_on_pressed"]
+[connection signal="pressed" from="UI/start menu/BoxContainer/menu buttons/opt btn" to="UI/start menu/BoxContainer/menu buttons/opt btn" method="_on_pressed"]
+[connection signal="pressed" from="UI/start menu/BoxContainer/menu buttons/quit btn" to="UI/start menu/BoxContainer/menu buttons/quit btn" method="_on_pressed"]
+[connection signal="pressed" from="UI/death menu/BoxContainer/menu buttons/go to menu btn" to="world/gameManager" method="_on_go_to_menu_btn_pressed"]
+[connection signal="pressed" from="UI/death menu/BoxContainer/menu buttons/go to menu btn" to="UI/UIManager" method="_on_go_to_menu_btn_pressed"]
+[connection signal="pressed" from="UI/death menu/BoxContainer/menu buttons/restart btn" to="world/gameManager" method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="UI/death menu/BoxContainer/menu buttons/quit btn" to="UI/death menu/BoxContainer/menu buttons/quit btn" method="_on_pressed"]
+[connection signal="pressed" from="UI/in game UI/pause btn" to="world/gameManager" method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="UI/pause menu/BoxContainer/menu buttons/continue btn" to="world/gameManager" method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="UI/pause menu/BoxContainer/menu buttons/opt btn" to="world/gameManager" method="_on_opt_btn_pressed"]
+[connection signal="pressed" from="UI/pause menu/BoxContainer/menu buttons/opt btn" to="UI/pause menu/BoxContainer/menu buttons/opt btn" method="_on_pressed"]
+[connection signal="pressed" from="UI/pause menu/BoxContainer/menu buttons/restart btn" to="world/gameManager" method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="UI/pause menu/BoxContainer/menu buttons/go to menu btn" to="world/gameManager" method="_on_go_to_menu_btn_p_pressed"]
+[connection signal="pressed" from="UI/pause menu/BoxContainer/menu buttons/go to menu btn" to="world/gameManager" method="_on_go_to_menu_btn_pressed"]
+[connection signal="pressed" from="UI/pause menu/BoxContainer/menu buttons/go to menu btn" to="UI/UIManager" method="_on_go_to_menu_btn_pressed"]
+[connection signal="pressed" from="UI/pause menu/BoxContainer/menu buttons/quit btn" to="UI/pause menu/BoxContainer/menu buttons/quit btn" method="_on_pressed"]
+[connection signal="pressed" from="UI/options menu/BoxContainer/settings buttons/gameplay settings btn" to="world/gameManager" method="_on_gameplay_settings_btn_pressed"]
+[connection signal="pressed" from="UI/options menu/BoxContainer/settings buttons/gameplay settings btn" to="UI/UIManager" method="_on_gameplay_settings_btn_pressed"]
+[connection signal="pressed" from="UI/options menu/BoxContainer/settings buttons/audio settings" to="UI/UIManager" method="_on_audio_settings_pressed"]
+[connection signal="pressed" from="UI/options menu/BoxContainer/settings buttons/go back btn" to="world/gameManager" method="_on_go_back_btn_pressed"]
+[connection signal="pressed" from="UI/options menu/BoxContainer/settings buttons/go back btn" to="UI/UIManager" method="_on_go_back_btn_pressed"]
+[connection signal="toggled" from="UI/settings/game play/BoxContainer/inputs/imm respawn" to="UI/settings" method="_on_imm_respawn_toggled"]
+[connection signal="drag_ended" from="UI/settings/game play/BoxContainer/inputs/jump_sens_val" to="UI/settings" method="_on_jump_sens_val_drag_ended"]
+[connection signal="drag_ended" from="UI/settings/game play/BoxContainer/inputs/gravity" to="UI/settings" method="_on_gravity_drag_ended"]
+[connection signal="drag_ended" from="UI/settings/game play/BoxContainer/inputs/difficulty" to="UI/settings" method="_on_difficulty_drag_ended"]
+[connection signal="drag_ended" from="UI/settings/game play/BoxContainer/inputs/game speed" to="UI/settings" method="_on_game_speed_drag_ended"]
+[connection signal="pressed" from="UI/settings/game play/BoxContainer/inputs/go back btn" to="world/gameManager" method="_on_go_back_btn_pressed"]
+[connection signal="pressed" from="UI/settings/game play/BoxContainer/inputs/go back btn" to="UI/UIManager" method="_on_go_back_btn_pressed"]
+[connection signal="drag_ended" from="UI/settings/audio/BoxContainer/inputs/sound effect intensity" to="UI/settings" method="_on_sound_effect_intensity_drag_ended"]
+[connection signal="toggled" from="UI/settings/audio/BoxContainer/inputs/bg music" to="UI/settings" method="_on_bg_music_toggled"]
+[connection signal="drag_ended" from="UI/settings/audio/BoxContainer/inputs/bg music intensity" to="UI/settings" method="_on_bg_music_intensity_drag_ended"]
+[connection signal="pressed" from="UI/settings/audio/BoxContainer/inputs/go back btn" to="UI/UIManager" method="_on_go_back_btn_pressed"]

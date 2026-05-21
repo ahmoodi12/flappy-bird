@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dacmukikywfps"]
+
+[ext_resource type="Script" uid="uid://c8ppvbd0pp0dd" path="res://pipe_pair.gd" id="1_bmsf8"]
+[ext_resource type="Texture2D" uid="uid://b65l5o5ycgdux" path="res://flappy bird pole.png" id="1_nep78"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_bmsf8"]
+points = PackedVector2Array(79, 426, -79, 426, -79, -347, -105, -355, -104, -421, 105, -419, 105, -355, 79, -347)
+
+[node name="pipe pair" type="Node2D" unique_id=1819270814 node_paths=PackedStringArray("low_pipe", "high_pipe")]
+script = ExtResource("1_bmsf8")
+low_pipe = NodePath("pipe low")
+high_pipe = NodePath("pipe high")
+
+[node name="pipe low" type="StaticBody2D" parent="." unique_id=482901256]
+
+[node name="Sprite2D" type="Sprite2D" parent="pipe low" unique_id=2084508885]
+texture = ExtResource("1_nep78")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pipe low" unique_id=1387088441]
+shape = SubResource("ConvexPolygonShape2D_bmsf8")
+debug_color = Color(0.43529412, 0.36078432, 0, 0.5176471)
+
+[node name="pipe high" type="StaticBody2D" parent="." unique_id=1087961078]
+rotation = 3.1415927
+
+[node name="Sprite2D" type="Sprite2D" parent="pipe high" unique_id=314699455]
+texture = ExtResource("1_nep78")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pipe high" unique_id=766416392]
+shape = SubResource("ConvexPolygonShape2D_bmsf8")
+debug_color = Color(0.43529412, 0.36078432, 0, 0.5176471)

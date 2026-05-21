@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbwsasufakwkp"
+path="res://.godot/imported/retro3.mp3-05c185aae121af57127a2a66a32be929.mp3str"
+
+[deps]
+
+source_file="res://background music/retro3.mp3"
+dest_files=["res://.godot/imported/retro3.mp3-05c185aae121af57127a2a66a32be929.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
